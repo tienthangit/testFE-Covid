@@ -1,0 +1,93 @@
+/* ==================== Modal */
+.modal__header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  position: relative;
+}
+
+.header__desc {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+}
+
+/* The Close Button */
+.close {
+  color: #aaaaaa;
+  float: right;
+  font-size: 28px;
+  font-weight: bold;
+  position: absolute;
+  right: 0;
+  top: 0;
+}
+
+.close:hover,
+.close:focus {
+  color: #000;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.modal__overlay {
+  background-color: #00000085;
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  opacity: 0;
+  transition: all 0.6s;
+  display: none;
+}
+
+.modal__body {
+  position: fixed;
+  left: 0;
+  right: 0;
+  top: 0;
+  transform: translateY(7%);
+  z-index: 10;
+  background-color: #fefefe;
+  margin: auto;
+  padding: 20px;
+  border: 1px solid #888;
+  width: 70%;
+  transition: all 0.6s;
+  opacity: 0;
+  display: none;
+}
+
+.countrySelected {
+  background-color: #ff81008c !important;
+}
+
+.cardModal {
+  border-radius: 5px;
+}
+
+.header__nameCountry {
+  margin-left: 5px;
+}
+.header__nameCountry > p {
+  font-weight: bold;
+}
+.header__nameCountry p span {
+  color: #000000;
+  font-weight: 500;
+}
+
+@media (max-width: 768px) {
+  .heading {
+    font-size: 18px;
+    margin: 10px 0;
+  }
+
+  .header__nameCountry {
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: column;
+    width: 100%;
+  }
+}
