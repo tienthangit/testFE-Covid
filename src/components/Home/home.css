@@ -44,10 +44,20 @@ h5,
   height: 200px;
   border-radius: 5px;
   padding: 1rem;
+  cursor: pointer;
   -webkit-box-shadow: 0px 4px 10px 2px rgba(0, 0, 0, 0.68);
   -moz-box-shadow: 0px 4px 10px 2px rgba(0, 0, 0, 0.68);
   box-shadow: 0px 4px 10px 2px rgba(0, 0, 0, 0.68);
 }
+
+.card {
+   transition: all 0.2s ease-in-out;
+}
+.card:hover {
+    transform: scale(1.05) translateY(-10px);
+    box-shadow: 0px 15px 10px 2px rgba(0, 0, 0, 0.68);
+}
+
 
 .Confirmed {
   border-bottom: 10px solid rgb(0, 0, 255, 0.5);

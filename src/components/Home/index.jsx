@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react'
-import { useDispatch } from "react-redux"
+import { useDispatch, useSelector } from "react-redux"
 import Table from '../Table';
 import ModalCountry from '../Modal';
 import imgCororna from '../../assets/img/corona.png'
@@ -10,13 +10,12 @@ import Pagination from '../Pagination';
 
 function Home() {
     const dispatch = useDispatch();
+    const { ListData } = useSelector(state => state.listDataReducer)
 
-    const [dataTable, setDataTable] = useState([])
     const [dataGlobal, setDataGobal] = useState({})
     const [currentPage, setCurrentPage] = useState(1)
     const [countryPerPage, setCountryPerPage] = useState(10)
 
-    // console.log('dataGlobal',dataGlobal);
 
     useEffect(() => {
         const fecthData = async () => {
@@ -27,7 +26,7 @@ function Home() {
                     url: "https://api.covid19api.com/summary",
                     method: "GET"
                 })
-                await setDataTable(result.data.Countries)
+                await dispatch({ type: "SET_DATA_TABLE", payload: result.data.Countries })
                 await setDataGobal(result.data.Global)
 
                 await dispatch({ type: "OFF_LOADING" })
@@ -43,9 +42,9 @@ function Home() {
 
     // Get current country 
 
-    const indexOfLastPost = currentPage * countryPerPage
-    const indexOfFirstPost = indexOfLastPost - countryPerPage
-    const currentPosts = dataTable.sort((a, b) => b.TotalConfirmed - a.TotalConfirmed).sort((a, b) => b.TotalDeaths - a.TotalDeaths).slice(indexOfFirstPost, indexOfLastPost)
+    const indexOfLastCountry = currentPage * countryPerPage
+    const indexOfFirstCountry = indexOfLastCountry - countryPerPage
+    const currentPosts = ListData.sort((a, b) => b.TotalConfirmed - a.TotalConfirmed).sort((a, b) => b.TotalDeaths - a.TotalDeaths).slice(indexOfFirstCountry, indexOfLastCountry)
 
     // Change Page
     const paginate = (pageNumber) => setCurrentPage(pageNumber)
@@ -95,7 +94,7 @@ function Home() {
                         <Table dataTable={currentPosts} />
                     </tbody>
                 </table>
-                <Pagination countryPerPage={countryPerPage} totalCountry={dataTable.length} paginate={paginate} />
+                <Pagination countryPerPage={countryPerPage} totalCountry={ListData.length} paginate={paginate} />
                 <Loading />
                 <ModalCountry />
             </div>

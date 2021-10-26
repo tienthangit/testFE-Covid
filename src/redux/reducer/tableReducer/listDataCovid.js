@@ -1,10 +1,14 @@
 const initialState = {
+    ListData: [],
     ListCountrySelected: []
 }
 
 const listDataReducer = (state = initialState, { type, payload }) => {
     switch (type)
     {
+        case "SET_DATA_TABLE":
+            state.ListData = payload
+            return {...state}
         case "SET_COUNTRY_SELECTED":
             state.ListCountrySelected = payload
             return { ...state }

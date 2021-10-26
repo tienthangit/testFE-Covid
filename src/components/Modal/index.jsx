@@ -27,6 +27,7 @@ function ModalCountry() {
         } else
         {
             divOverLay.style.display = 'none'
+            modal.style.display = 'none'
             modal.style.opacity = '0'
             divOverLay.style.opacity = '0'
         }
